@@ -1,0 +1,12 @@
+<litepal>
+    <dbname value = "Rainmeter_weather"/>
+
+    <version value = "1"/>
+
+    <list>
+        <mapping class="com.example.xiaoming.rainmeterweather.database.Country"/>
+        <mapping class="com.example.xiaoming.rainmeterweather.database.Province"/>
+        <mapping class="com.example.xiaoming.rainmeterweather.database.City"/>
+    </list>
+
+</litepal>
