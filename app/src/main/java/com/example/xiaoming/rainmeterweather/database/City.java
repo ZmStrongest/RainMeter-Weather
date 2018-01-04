@@ -3,9 +3,6 @@ package com.example.xiaoming.rainmeterweather.database;
 
 import org.litepal.crud.DataSupport;
 
-/**
- * Created by xiaoming on 2018/1/3.
- */
 
 public class City extends DataSupport {
     private int id;
