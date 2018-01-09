@@ -2,6 +2,7 @@ package com.example.xiaoming.rainmeterweather;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -82,6 +83,20 @@ public class ChooseArea extends Fragment {
                 else if (currentLevel == level_city){
                     selectedCity = cityList.get(position);
                     showCounties();
+                }else if (currentLevel == level_conuty){
+                    String weatherId = countyList.get(position).getWeatherId();
+                    //使用java关键字instanceof来判断一个对象是否属于某个类的实例，判断选择城市是通过主活动选择还是滑动菜单选择
+                    if (getActivity() instanceof MainActivity) {
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weather_id", weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }else if (getActivity() instanceof WeatherActivity){
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.layout_drawer.closeDrawers();
+                        activity.refresh.setRefreshing(true); //刷新城市，更新weatherId
+                        activity.requestWeather(weatherId);
+                    }
                 }
             }
         });

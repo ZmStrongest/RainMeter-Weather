@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.xiaoming.rainmeterweather.WeatherActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/img_bing"
+        android:scaleType="centerCrop" />
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/layout_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+     <android.support.v4.widget.SwipeRefreshLayout
+         android:id="@+id/refesh"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/sv_weather"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true">
+
+        <include layout="@layout/title" />
+        <include layout="@layout/now" />
+        <include layout="@layout/forecast" />
+        <include layout="@layout/forecast_item" />
+        <include layout="@layout/today"/>
+        <include layout="@layout/aqi" />
+        <include layout="@layout/suggestions" />
+
+    </LinearLayout>
+    </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <fragment
+        android:id="@+id/fragment_choosearea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="start"
+        android:background="#8000"
+        android:name="com.example.xiaoming.rainmeterweather.ChooseArea"/>
+
+
+    </android.support.v4.widget.DrawerLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbtn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="30dp"
+        app:backgroundTint="#8000"
+        android:src="@android:drawable/ic_dialog_dialer"/>
+</FrameLayout>

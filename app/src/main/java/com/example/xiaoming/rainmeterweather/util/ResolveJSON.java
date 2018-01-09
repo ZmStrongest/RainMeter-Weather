@@ -6,6 +6,9 @@ import android.util.Log;
 import com.example.xiaoming.rainmeterweather.database.City;
 import com.example.xiaoming.rainmeterweather.database.County;
 import com.example.xiaoming.rainmeterweather.database.Province;
+import com.example.xiaoming.rainmeterweather.gson.BingPic;
+import com.example.xiaoming.rainmeterweather.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,5 +83,35 @@ public class ResolveJSON {
             }
         }
         return false;
+    }
+
+    /**
+     * 用GSON解析和处理服务器返回的天气信息数据
+     */
+    public static Weather resolveWeaResData(String response){
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherData = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherData,Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 用GSON解析和处理服务器返回的必应每日一图的数据
+     */
+    public static BingPic resolveBingResData(String response){
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("images");
+            String bingData = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(bingData,BingPic.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
