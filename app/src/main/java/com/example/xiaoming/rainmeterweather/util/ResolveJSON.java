@@ -29,7 +29,6 @@ public class ResolveJSON {
                     Province province = new Province();
                     province.setProName(proObject.getString("name"));
                     province.setProCode(proObject.getInt("id"));
-                    Log.i("FDSA",proObject.getString("name"));
                     province.save();
                 }
                 return true;

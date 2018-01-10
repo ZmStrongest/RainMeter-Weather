@@ -65,7 +65,7 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView tv_rainnum;
     private TextView tv_hum;
     private TextView tv_airqty;
-    private FloatingActionButton fbtn_add;
+    private FloatingActionButton fbtn_menu;
     private ImageView img_icon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +107,7 @@ public class WeatherActivity extends AppCompatActivity {
         tv_pressure = (TextView) findViewById(R.id.tv_pressure);
         tv_airqty = (TextView) findViewById(R.id.tv_airquality);
         tv_wind = (TextView) findViewById(R.id.tv_wind);
-        fbtn_add = (FloatingActionButton) findViewById(R.id.fbtn_add);
+        fbtn_menu = (FloatingActionButton) findViewById(R.id.fbtn_menu);
         img_icon = (ImageView) findViewById(R.id.img_icon);
 
         refresh = (SwipeRefreshLayout)findViewById(R.id.refesh);
@@ -148,9 +148,24 @@ public class WeatherActivity extends AppCompatActivity {
             }
         });
         //悬浮按钮监听事件
-
+        fbtn_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WeatherActivity.this,WeatherListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String weatherId = sharedPreferences.getString("weather_id",null);
+        if (weatherId!=null){
+            requestWeather(weatherId);
+        }
+    }
 
     /**
      * 从服务器中获取背景图片
@@ -258,7 +273,6 @@ public class WeatherActivity extends AppCompatActivity {
         tv_visible.setText(vis);
         tv_airqty.setText(airqty);
 
-            img_icon.setImageResource(R.drawable.icons8sun);
 
         //此模块实现一星期的天气预报，循环输出数据显示在界面上
         for(Forecast forecast : weather.forecastsList){

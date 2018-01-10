@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,8 +93,15 @@ public class ChooseArea extends Fragment {
                     }else if (getActivity() instanceof WeatherActivity){
                         WeatherActivity activity = (WeatherActivity) getActivity();
                         activity.layout_drawer.closeDrawers();
-                        activity.refresh.setRefreshing(true); //刷新城市，更新weatherId
+                        activity.refresh.setRefreshing(true);
                         activity.requestWeather(weatherId);
+                    }else if(getActivity() instanceof WeatherListActivity){
+                        WeatherListActivity activity = (WeatherListActivity) getActivity();
+                        activity.layout_drawer.closeDrawers();
+                        activity.fbtn_add.setVisibility(View.VISIBLE);
+                        activity.requestWeather(weatherId);
+                        Intent intent = new Intent(getActivity(),WeatherListActivity.class);
+                        startActivity(intent);
                     }
                 }
             }

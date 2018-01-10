@@ -7,6 +7,7 @@
         <mapping class="com.example.xiaoming.rainmeterweather.database.County"/>
         <mapping class="com.example.xiaoming.rainmeterweather.database.Province"/>
         <mapping class="com.example.xiaoming.rainmeterweather.database.City"/>
+        <mapping class="com.example.xiaoming.rainmeterweather.database.weatherList"/>
     </list>
 
 </litepal>

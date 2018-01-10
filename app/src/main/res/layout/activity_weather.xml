@@ -53,18 +53,18 @@
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
         android:layout_gravity="start"
-        android:background="#8000"
         android:name="com.example.xiaoming.rainmeterweather.ChooseArea"/>
 
 
     </android.support.v4.widget.DrawerLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fbtn_add"
+        android:id="@+id/fbtn_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="30dp"
+        android:layout_marginRight="10dp"
         app:backgroundTint="#8000"
         android:src="@android:drawable/ic_dialog_dialer"/>
 </FrameLayout>
